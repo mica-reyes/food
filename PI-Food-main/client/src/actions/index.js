@@ -1,6 +1,8 @@
 import axios from 'axios'; 
 export const GET_RECIPES= 'GET_RECIPES';
 export const GET_DIETS= 'GET_DIETS';
+export const GET_RECIPES_BY_NAME ='GET_RECIPES_BY_NAME';
+export const SORT ='SORT';
 
 export function getRecipes(){
     return function(dispatch){
@@ -14,6 +16,18 @@ export function getRecipes(){
     }
 }
 
+export function getRecipesByName(name){
+    return function(dispatch){
+        axios.get(`http://localhost:3001/recipes?name=${name}`)
+        .then(resp=>{
+            dispatch({
+                type: GET_RECIPES_BY_NAME,
+                payload: resp.data
+            })
+        })
+    }
+}
+
 export function getDiets(){
     return async function(dispatch){
        const diets= await axios.get('http://localhost:3001/diets')
@@ -21,5 +35,11 @@ export function getDiets(){
            type:GET_DIETS,
            payload: diets.data
        })
+    }
+}
+export function sort(order){
+    return {
+        type: SORT,
+        payload: order
     }
 }

@@ -1,26 +1,54 @@
-import React from "react";
-//import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from 'axios'
+import { useParams } from "react-router";
 
-export default function Details({name, image, dishTypes, diets, summary, score, healthScore, steps }) {
+export default function Details() {
+    const [recipe, setRecipe]= useState({})
+    const {id}= useParams()
+
+    function getRecipeById(id) {
+        axios.get(`http://localhost:3001/recipes/${id}`)
+        .then(recipe=>{
+            setRecipe(recipe.data)
+        })
+    }
+
+    useEffect(()=>{
+        getRecipeById(id)
+    }, [])
     return(
         <div>
-{/*             <h1>{name}</h1>
-            <img src={image} alt="foto del plato"/>
+            <h1>{recipe.name}</h1>
+            <img src={recipe.image} alt="foto del plato"/>
+            <h3>dish types</h3>
             <ul>
-                {dishTypes?.map(el=>{
-                    <li>{el}</li>
+                {recipe.dishTypes?.map((el, index)=>{
+                   return <li key={index}>{el}</li>
                 })}
             </ul>
+            <h3>diets types</h3>
+            <ul>
+                {
+                    recipe.diets?.map((el, index)=>{
+                        return <li key={index}>{el}</li>
+                    })
+                }
+            </ul>
+            <h3>summary</h3>
+            <p>{recipe?.summary}</p>
+            <h3>score: {recipe.score}</h3>
+            <h3>health score: {recipe.healthScore}</h3>
+            <h3>steps</h3>
+            <ol>{
+                recipe.steps?.map((el, index)=>{
+                    return <li key={index}>{el?.step}</li>
+                })}</ol>
             <Link to='/home'>
                 <button>VOLVER</button>
-            </Link> */}
+            </Link> 
         </div>
     )
 }
-/* [ ] Los campos mostrados en la ruta principal para cada receta (imagen, nombre, tipo de plato y tipo de dieta)
-    //<Card name={el.name} image={el.image} id={el.id} diets={el.diets}
-    //<ul>{diets?.map(el=><li>{el}</li>)}</ul>
-[ ] Resumen del plato
-[ ] Puntuación
-[ ] Nivel de "comida saludable"
+/* 
 [ ] Paso a paso */

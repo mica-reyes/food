@@ -1,11 +1,18 @@
-import React from "react"
+import React from "react";
+import { sort} from "../actions";
+import { useDispatch } from "react-redux";
+
 
 export default function Sort() {
+    const dispatch= useDispatch()
+    function onChange(e) {
+      dispatch(sort(e.target.value))  
+    }
     return(
         <div>
             <div>
                 <label>Order by</label>
-                <select>
+                <select onChange={onChange}>
                     <option value="A_Z">A-Z</option>
                     <option value="Z_A">Z-A</option>
                 </select>

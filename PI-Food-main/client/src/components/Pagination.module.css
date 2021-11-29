@@ -1,0 +1,9 @@
+.pageNumber{
+    display: flex;
+    justify-content: center;
+}
+
+.li{
+    padding:10px;
+    border: 1px solid black;
+}

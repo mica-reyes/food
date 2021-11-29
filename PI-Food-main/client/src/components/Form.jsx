@@ -52,9 +52,16 @@ export default function Form() {
             </form>
             <select name="" id="" onChange={selectDiets}> {
                 allDiets?.map(diet=>{
-                   return <option value={diet.name}>{diet.name}</option>
+                   return <option value={diet.name} key={diet.id}>{diet.name}</option>
                 })
             } </select>
+            <ul>{
+                recipe.diets?.map((diet, index)=>{
+                    return <li key={index}>
+                        {diet}
+                    </li>
+                })}
+            </ul>
         </div>
     )
 }

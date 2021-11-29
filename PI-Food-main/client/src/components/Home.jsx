@@ -26,8 +26,8 @@ export default function Home() {
             <Link to='/create'>
                 <button>Create your recipe</button>
             </Link>
-            <Pagination recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paged={paged}/> 
             <Cards currentRecipes={currentRecipes}/>
+            <Pagination recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paged={paged}/> 
         </div>
     )
 }

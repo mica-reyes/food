@@ -12,6 +12,14 @@ ul{
     display: flex;
     flex-direction: column;
     width: 350px;
-    height: 175px;
+    /* height: 175px; */
     position: relative;
+}
+
+h1{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    height: 100px;
 }
