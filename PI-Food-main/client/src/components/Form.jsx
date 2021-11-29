@@ -7,12 +7,15 @@ import { getDiets } from "../actions";
 export default function Form() {
     const allDiets= useSelector((state)=>state.diets)
     const [recipe, setRecipe] = useState({
-        name:'',
-        summary:'',
-        score:'',
-        healthScore:'',
-        steps:'',
-        diets:[]
+        recipes:{
+
+            name:'',
+            summary:'',
+            score:'',
+            healthScore:'',
+            steps:'',
+        },
+        dietId:[]
     })
      
     const dispatch= useDispatch()
@@ -35,6 +38,8 @@ export default function Form() {
             diets:[...recipe.diets, e.target.value]
         })
     }
+
+
     return(
         <div>
             <form onChange={handleChange} value=''>    
@@ -50,31 +55,19 @@ export default function Form() {
                 <input type="text" placeholder='Steps...' name='steps' value={recipe.steps}/>
                 <label>select diets</label>
             </form>
-            <select name="" id="" onChange={selectDiets}> {
+            <select name="diets" onChange={selectDiets}> {
                 allDiets?.map(diet=>{
-                   return <option value={diet.name} key={diet.id}>{diet.name}</option>
+                   return <option value={diet.id} key={diet.id}>{diet.name}</option>
                 })
             } </select>
-            <ul>{
+        </div>
+    )
+}
+
+/* <ul>{
                 recipe.diets?.map((diet, index)=>{
                     return <li key={index}>
                         {diet}
                     </li>
                 })}
-            </ul>
-        </div>
-    )
-}
-
-
-
-/* 
-
-[ ] Un formulario controlado con los siguientes campos
-Nombre
-Resumen del plato
-Puntuación
-Nivel de "comida saludable"
-Paso a paso
-[ ] Posibilidad de seleccionar/agregar uno o más tipos de dietas
-[ ] Botón/Opción para crear una nueva receta */
+            </ul> */

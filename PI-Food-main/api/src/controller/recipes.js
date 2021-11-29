@@ -43,7 +43,7 @@ const getRecipesByName = (req,res,next)=>{
             if(fil.length>0){
                return res.send(fil)
             } else{
-                res.status(404).send('Recipe no found')
+                res.status(404).message('Recipe no found')
             } 
         }
        return res.send(allRecipes)

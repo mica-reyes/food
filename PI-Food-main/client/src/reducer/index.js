@@ -21,12 +21,11 @@ function rootReducer(state=initialState, action){
         case GET_RECIPES_BY_NAME:
             return{
                 ...state,
-                filteredRecipes: action.payload
+                recipes: action.payload
             }
         case SORT:
-            let sort
-            state.filteredRecipes? sort=[...state.filteredRecipes]: sort= [...state.recipes]
-            sort.sort((a, b)=> {
+            const filteredRecipesSort= [...state.filteredRecipes]
+            const orderedRecipes= filteredRecipesSort?.sort((a, b)=> {
                 if(a.name>b.name && action.payload==='A_Z') return 1
                 if(a.name>b.name && action.payload==='Z_A') return -1
                 if(a.name<b.name && action.payload==='A_Z') return -1
@@ -35,7 +34,7 @@ function rootReducer(state=initialState, action){
             })
             return{
                 ...state,
-                orderedRecipe: sort
+                orderedRecipe: orderedRecipes
             }
         default:
             return state;
