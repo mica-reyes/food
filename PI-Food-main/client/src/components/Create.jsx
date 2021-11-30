@@ -9,9 +9,6 @@ export default function Create({diets}) {
             <button>Back go home</button>
             </Link>
             <Form/>
-            <Link to='/details/id'>
-            <button>Create recipe</button>
-            </Link>
         </div>
     )
 }

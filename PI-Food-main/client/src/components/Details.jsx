@@ -16,7 +16,7 @@ export default function Details() {
 
     useEffect(()=>{
         getRecipeById(id)
-    }, [])
+    }, [id])
     return(
         <div>
             <h1>{recipe.name}</h1>

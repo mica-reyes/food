@@ -1,4 +1,4 @@
-import { GET_RECIPES, GET_DIETS, GET_RECIPES_BY_NAME, SORT } from '../actions/index';
+import { GET_RECIPES, GET_DIETS, GET_RECIPES_BY_NAME, SORT_NAME, FILTER_BY_DIETS, SORT_SCORE } from '../actions/index';
 const initialState={
     recipes:[],
     diets:[],
@@ -23,9 +23,9 @@ function rootReducer(state=initialState, action){
                 ...state,
                 recipes: action.payload
             }
-        case SORT:
-            const filteredRecipesSort= [...state.filteredRecipes]
-            const orderedRecipes= filteredRecipesSort?.sort((a, b)=> {
+        case SORT_NAME:
+            const recipesSortName= [...state.recipes]
+            const orderedRecipes= recipesSortName?.sort((a, b)=> {
                 if(a.name>b.name && action.payload==='A_Z') return 1
                 if(a.name>b.name && action.payload==='Z_A') return -1
                 if(a.name<b.name && action.payload==='A_Z') return -1
@@ -34,8 +34,28 @@ function rootReducer(state=initialState, action){
             })
             return{
                 ...state,
-                orderedRecipe: orderedRecipes
+                recipes: orderedRecipes
             }
+        case SORT_SCORE:   
+        const recipesSortScore= [...state.recipes]
+        const orderedRecipesScore= recipesSortScore?.sort((a, b)=> {
+            if(a.score>b.score && action.payload==="0-100") return 1
+            if(a.score>b.score && action.payload==='100-0') return -1
+            if(a.score<b.score && action.payload==="0-100") return -1
+            if(a.score<b.score && action.payload==='100-0') return  1
+            return 0
+        })
+        return{
+            ...state,
+            recipes: orderedRecipesScore
+        }
+        case FILTER_BY_DIETS:
+            const copyRecipes= [...state.recipes]
+            const filter= copyRecipes.filter(recipe=>recipe.diets.find(el=>el===action.payload))
+            return{
+                ...state,
+                recipes: filter
+            } 
         default:
             return state;
     }

@@ -1,10 +1,18 @@
 import React from "react";
+import { filterByDiets } from "../actions";
+import {useDispatch} from 'react-redux'
 
 export default function Filter() {
+    const dispatch= useDispatch()
+
+    function handleChange(e) {
+       dispatch(filterByDiets(e.target.value))
+    }
+    
     return(
         <div>
             <label>Seleccionar Receta</label>
-            <select name="" id="">
+            <select onChange={handleChange}>
                 <option value="gluten free">gluten free</option>
                 <option value="ketogenic">ketogenic</option>
                 <option value="vegetarian">vegetarian</option>

@@ -4,14 +4,14 @@ const postRecipe= (req, res, next)=>{
     try {
         const {recipes, dietId}=req.body
         if(recipes){
-            const {name, summary, score, healthScore, instructions, diet}= recipes
+            const {name, summary, score, healthScore, instructions}= recipes
             Recipe.create({
                 name, 
                 summary, 
                 score, 
                 healthScore, 
-                instructions, 
-                diet})
+                instructions
+            })
                 .then(recipe=>{
                     dietId.map(async el=>{recipe.addDiet(el)})
                     res.send(recipe)

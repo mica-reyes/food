@@ -18,6 +18,7 @@ export default function Home() {
     const paged= (pages)=>{
         setCurrentPage(pages)
     }   
+    console.log(currentRecipes)
     return(
         <div>
             <Search/>
@@ -28,6 +29,7 @@ export default function Home() {
             </Link>
             <Cards currentRecipes={currentRecipes}/>
             <Pagination recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paged={paged}/> 
+
         </div>
     )
 }

@@ -24,7 +24,9 @@ const getRecipesByName = (req,res,next)=>{
                 id:el.id,
                 name: el.title,
                 image: el.image,
-                diets: el.diets
+                diets: el.diets,
+                score: el.spoonacularScore,
+                healthScore: el.healthScore,
                 //vegetarian: el.vegetarian,
                 //vegan: el.vegan,
                 //glutenFree: el.glutenFree,
@@ -57,8 +59,17 @@ const getRecipesbyId= async(req,res,next)=>{
     const {id}= req.params
     try {
         if(id.length>15){
-           const resp= await Recipe.findByPk(id, {include: Diet})
-            return res.json(resp)
+           const el= await Recipe.findByPk(id, {include: Diet})
+           const obj={
+                name: el.name,
+                image: el.image,
+                dishTypes: el.dishTypes,
+                diets: el.diets?.map(el=>el.name),
+                summary: el.summary,
+                score: el.spoonacularScore,
+                healthScore: el.healthScore,
+           }
+            return res.json(obj)
            }
         const resp= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
         const el= await resp.data
