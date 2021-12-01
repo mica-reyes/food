@@ -13,6 +13,7 @@ export default function Filter() {
         <div>
             <label>Seleccionar Receta</label>
             <select onChange={handleChange}>
+                <option disabled selected></option>
                 <option value="gluten free">gluten free</option>
                 <option value="ketogenic">ketogenic</option>
                 <option value="vegetarian">vegetarian</option>

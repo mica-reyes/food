@@ -26,11 +26,12 @@ function rootReducer(state=initialState, action){
         case SORT_NAME:
             const recipesSortName= [...state.recipes]
             const orderedRecipes= recipesSortName?.sort((a, b)=> {
-                if(a.name>b.name && action.payload==='A_Z') return 1
-                if(a.name>b.name && action.payload==='Z_A') return -1
-                if(a.name<b.name && action.payload==='A_Z') return -1
-                if(a.name<b.name && action.payload==='Z_A') return  1
+                if(a.name.toLowerCase()>b.name.toLowerCase() && action.payload==='A_Z') return 1
+                if(a.name.toLowerCase()>b.name.toLowerCase() && action.payload==='Z_A') return -1
+                if(a.name.toLowerCase()<b.name.toLowerCase() && action.payload==='A_Z') return -1
+                if(a.name.toLowerCase()<b.name.toLowerCase() && action.payload==='Z_A') return  1
                 return 0
+                
             })
             return{
                 ...state,

@@ -39,7 +39,8 @@ const getRecipesByName = (req,res,next)=>{
                 image: el.image,
                 diets: el.diets.map(el=>el.name)
         }}) 
-        let allRecipes=[...apiRecipesFormat, ...dbRecipesFormat]
+        let allRecipes= apiRecipesFormat.concat(dbRecipesFormat)
+        //let allRecipes=[...apiRecipesFormat, ...dbRecipesFormat]
         if(name){
             const fil= allRecipes.filter(el=>el.name.toLowerCase().includes(name.toLowerCase()))           
             if(fil.length>0){

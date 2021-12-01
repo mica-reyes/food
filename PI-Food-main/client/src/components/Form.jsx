@@ -40,18 +40,27 @@ export default function Form() {
     }
 
     function selectDiets(e) {
-  /*       e.preventDefault() */
+    if(e.target.checked){
         setRecipe({
             ...recipe,
             dietId:[...recipe.dietId, e.target.value]
-        })
+            })
+        }
+        if(!e.target.checked){
+            const filter= [...recipe.dietId].filter(el=>el!==e.target.value)
+            setRecipe({
+                ...recipe,
+                dietId: filter
+            })
+        }    
     }
 
     function handleSubmit(e) {
         e.preventDefault()
         axios.post('http://localhost:3001/recipe', recipe)
-        .then(()=>{
-            history.push('/home')
+        .then((resp)=>{
+
+            history.push(`/details/${resp.data.id}`)
         }) 
     }
 
@@ -68,23 +77,26 @@ export default function Form() {
                 <input type="number" min="0" max="100" placeholder='Health Score...' onChange={handleChange}  name='healthScore' value={recipe.recipes.healthScore}/>
                 <label>instructions</label>
                 <input type="text" placeholder='instructions...' onChange={handleChange}  name='instructions' value={recipe.recipes.instructions}/>
-                <label>select diets</label>
-                
-                <select onChange={selectDiets}> {
-                    allDiets?.map(diet=>{
-                        return <option value={diet.id} key={diet.id}>{diet.name}</option>
+                <label>select diets</label> 
+                {
+                    allDiets.map((diet, index)=>{
+                        return (
+                            <div key={index}>
+                                <label >{diet.name}</label>
+                                <input type="checkbox" value={diet.id} name={diet.name} onChange={selectDiets}/>
+                            </div>
+                            )
                     })
-                } </select>
+                }     
                 <input type="submit" value='Create recipe' />
             </form>
         </div>
     )
 }
 
-/* <ul>{
-                recipe.diets?.map((diet, index)=>{
-                    return <li key={index}>
-                        {diet}
-                    </li>
-                })}
-            </ul> */
+/*  <select onChange={selectDiets}> {
+                    [{name:'all'}, ...allDiets].map((diet, index)=>{
+                        return <option value={diet.id} key={index}>{diet.name}</option>
+                    })
+                } </select>
+                <input type="submit" value='Create recipe' /> */

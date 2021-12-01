@@ -18,7 +18,7 @@ export default function Home() {
     const paged= (pages)=>{
         setCurrentPage(pages)
     }   
-    console.log(currentRecipes)
+    console.log(allRecipes)
     return(
         <div>
             <Search/>
