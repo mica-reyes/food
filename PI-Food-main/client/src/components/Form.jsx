@@ -1,8 +1,8 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import { getDiets } from "../actions";
+import { getRecipes } from "../actions";
 import { useHistory } from "react-router";
 
 
@@ -24,10 +24,6 @@ export default function Form() {
     let history=useHistory();
     const dispatch= useDispatch()
     
-    useEffect(()=>{
-        dispatch(getDiets())
-    },[dispatch])
-
     function handleChange(e) {
         e.preventDefault()
         setRecipe({
@@ -59,8 +55,8 @@ export default function Form() {
         e.preventDefault()
         axios.post('http://localhost:3001/recipe', recipe)
         .then((resp)=>{
-
             history.push(`/details/${resp.data.id}`)
+            dispatch(getRecipes())
         }) 
     }
 
@@ -93,10 +89,3 @@ export default function Form() {
         </div>
     )
 }
-
-/*  <select onChange={selectDiets}> {
-                    [{name:'all'}, ...allDiets].map((diet, index)=>{
-                        return <option value={diet.id} key={index}>{diet.name}</option>
-                    })
-                } </select>
-                <input type="submit" value='Create recipe' /> */

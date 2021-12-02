@@ -1,8 +1,9 @@
 import React from "react";
 import { filterByDiets } from "../actions";
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 export default function Filter() {
+    const allDiets= useSelector(state=>state.diets)
     const dispatch= useDispatch()
 
     function handleChange(e) {
@@ -12,19 +13,14 @@ export default function Filter() {
     return(
         <div>
             <label>Seleccionar Receta</label>
-            <select onChange={handleChange}>
-                <option disabled selected></option>
-                <option value="gluten free">gluten free</option>
-                <option value="ketogenic">ketogenic</option>
-                <option value="vegetarian">vegetarian</option>
-                <option value="lacto-vegetarian">lacto-vegetarian</option>
-                <option value="ovo-vegetarian">ovo-vegetarian</option>
-                <option value="vegan">vegan</option>
-                <option value="pescetarian">pescetarian</option>
-                <option value="paleo">paleo</option>
-                <option value="primal">primal</option>
-                <option value="low FODMAP">low FODMAP</option>
-                <option value="whole30">whole30</option>
+            <select onChange={handleChange}>{
+                <>
+                {/* <option value='select' selected disabled>select</option> */}
+               { allDiets.map(el=>{
+                    return <option value={el.name} key={el.id}>{el.name}</option>
+                })}
+                </ >
+            }
             </select>
         </div>
     )

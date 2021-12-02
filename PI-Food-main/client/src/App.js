@@ -7,13 +7,18 @@ import RecipeCreate from './components/Create';
 import { useEffect } from "react";
 import React from 'react';
 import {useDispatch} from 'react-redux';
-import {getRecipes} from './actions/index'
+import {getDiets, getRecipes} from './actions/index';
 
 function App() {
   const dispatch= useDispatch();
     useEffect(()=>{
         dispatch(getRecipes())
     },[dispatch])
+
+    useEffect(()=>{
+      dispatch(getDiets())
+  },[dispatch])
+
   return (
     <div className="App">
       <Switch> 

@@ -29,7 +29,7 @@ const {
 conn.sync({ force: true }).then(async() => {
   const dietsDb= await Diet.findAll()
   if(!dietsDb.length){
-    let diets=['gluten free', 'ketogenic', 'vegetarian', 'lacto-vegetarian', 'ovo-vegetarian', 'vegan', 'pescetarian', 'paleo', 'primal', 'low FODMAP', 'whole30']
+    let diets=['gluten free', 'ketogenic', 'vegetarian', 'lacto-ovo-vegetarian', 'lacto-vegetarian', 'ovo-vegetarian', 'vegan', 'pescetarian', 'paleo', 'primal', 'low FODMAP', 'whole30']
     let createDietDb= diets.map(el=>{
       return {
         name: el

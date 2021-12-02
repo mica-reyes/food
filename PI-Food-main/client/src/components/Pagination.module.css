@@ -7,3 +7,10 @@
     padding:10px;
     border: 1px solid black;
 }
+.li:active{
+    border :2px solid #F8961E;
+    
+}
+.li::selection{
+    background-color:2px solid #F8961E;   
+}

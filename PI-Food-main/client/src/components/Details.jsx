@@ -21,12 +21,17 @@ export default function Details() {
         <div>
             <h1>{recipe.name}</h1>
             <img src={recipe.image} alt="foto del plato"/>
-            <h3>dish types</h3>
-            <ul>
-                {recipe.dishTypes?.map((el, index)=>{
-                   return <li key={index}>{el}</li>
+            {
+                recipe.dishTypes &&       
+                <div>
+                <h3>dish types</h3>
+                <ul>
+                    {recipe.dishTypes?.map((el, index)=>{
+                        return <li key={index}>{el}</li>
                 })}
-            </ul>
+                </ul>
+                </div>
+            }
             <h3>diets types</h3>
             <ul>
                 {
@@ -39,11 +44,13 @@ export default function Details() {
             <p>{recipe?.summary}</p>
             <h3>score: {recipe.score}</h3>
             <h3>health score: {recipe.healthScore}</h3>
-            <h3>steps</h3>
-            <ol>{
-                recipe.steps?.map((el, index)=>{
-                    return <li key={index}>{el?.step}</li>
-                })}</ol>
+            {
+                recipe.instructions && 
+                <div>
+                <h3>instructions</h3>
+                <p>{recipe.instructions}</p>
+                </div>
+            }
             <Link to='/home'>
                 <button>VOLVER</button>
             </Link> 

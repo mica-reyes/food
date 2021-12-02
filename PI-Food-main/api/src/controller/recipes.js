@@ -37,7 +37,11 @@ const getRecipesByName = (req,res,next)=>{
                 id:el.id,
                 name: el.name,
                 image: el.image,
-                diets: el.diets.map(el=>el.name)
+                summary:el.summary,
+                score: el.score,
+                healthScore: el.healthScore,
+                instructions: el.instructions,
+                diets: el.diets.map(el=>el.name),
         }}) 
         let allRecipes= apiRecipesFormat.concat(dbRecipesFormat)
         //let allRecipes=[...apiRecipesFormat, ...dbRecipesFormat]
@@ -61,14 +65,16 @@ const getRecipesbyId= async(req,res,next)=>{
     try {
         if(id.length>15){
            const el= await Recipe.findByPk(id, {include: Diet})
+           console.log(el)
            const obj={
                 name: el.name,
                 image: el.image,
-                dishTypes: el.dishTypes,
+                //dishTypes: el.dishTypes,
                 diets: el.diets?.map(el=>el.name),
                 summary: el.summary,
-                score: el.spoonacularScore,
+                score: el.score,
                 healthScore: el.healthScore,
+                instructions: el.instructions
            }
             return res.json(obj)
            }
@@ -79,15 +85,12 @@ const getRecipesbyId= async(req,res,next)=>{
             image: el.image,
             dishTypes: el.dishTypes,
             diets: el.diets,
-            summary: el.summary,
+            summary: el.summary.replace(/<[^>]*>?/g, ""),
             score: el.spoonacularScore,
             healthScore: el.healthScore,
-            steps: el.analyzedInstructions[0]?.steps.map(element=>{
-               return{
-                   number: element.number,
-                step: element.step
-                }  
-             })
+            instructions: el.analyzedInstructions[0]?.steps.map(element=>{
+               return element.step
+             }).join()
         }
         return res.send(obj)
     } catch (error) {

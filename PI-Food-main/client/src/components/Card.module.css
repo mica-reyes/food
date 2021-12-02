@@ -4,22 +4,31 @@
 
 ul{
     list-style: none;
+    height: 20%;
 }
 
 .contenedor{
-    border: rgba(63, 63, 63, 0.507) solid 1px;
-    background-color: rgba(0, 0, 0, 0.116);
+    border: #f8961e solid 2px;
+    background-color: rgba(249, 199, 79, 0.40);
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     width: 350px;
-    /* height: 175px; */
+    height: 500px;
     position: relative;
 }
 
 h1{
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;
-    height: 100px;
+    height: 20%;
+}
+
+img{
+    width: 50%;
+    height: 20%;
+}
+.contenedor:hover{
+    background-color:rgba(248, 150, 30, 0.45);
 }
