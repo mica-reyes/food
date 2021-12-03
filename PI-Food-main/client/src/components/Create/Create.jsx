@@ -1,12 +1,13 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import Form from "./Form"
+import Form from "../Form/Form"
+import style from '../Create/Create.module.css'
 
 export default function Create({diets}) {
     return(
         <div>
             <Link to='/home'>
-            <button>Back go home</button>
+            <button className={style.button}>Back go home</button>
             </Link>
             <Form/>
         </div>

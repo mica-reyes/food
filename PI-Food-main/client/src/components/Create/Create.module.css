@@ -1,0 +1,12 @@
+.button{
+    color: white;
+    border: 1px solid white ;
+    border-radius: 3px;
+    width: 100px; 
+    height: 30px;
+    background-color: rgba(19, 22, 20, 0.80);
+    cursor: pointer;
+    font-family:'Genos', sans-serif;
+    font-size: 18px;
+    text-align: center;
+}

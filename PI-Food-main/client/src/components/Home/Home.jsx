@@ -1,11 +1,12 @@
 import React,{ useState } from "react";
-import Cards from "./Cards";
-import Search from "./Search";
-import Filter from "./Filter";
-import Sort from "./Sort";
+import Cards from "../Cards/Cards";
+import Search from "../Search/Search";
+import Filter from "../Filter/Filter";
+import Sort from "../Sort/Sort.jsx";
 import { Link } from "react-router-dom";
-import Pagination from "./Pagination";
+import Pagination from "../Pagination/Pagination";
 import { useSelector } from "react-redux";
+import style from './Home.module.css'
 
 export default function Home() {
     const allRecipes= useSelector((state)=>state.recipes);
@@ -21,14 +22,16 @@ export default function Home() {
     console.log(allRecipes.map(el=>el))
     return(
         <div>
+            <div className={style.contenedor}>
             <Search/>
             <Filter/>
             <Sort/>
             <Link to='/create'>
-                <button>Create your recipe</button>
+                <button className={style.button}>Create your recipe</button>
             </Link>
+            </div>
+            <Pagination recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paged={paged} currentPage={currentPage}/> 
             <Cards currentRecipes={currentRecipes}/>
-            <Pagination recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paged={paged}/> 
 
         </div>
     )

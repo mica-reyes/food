@@ -1,0 +1,20 @@
+.contenedor{
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    border: 1px solid white;
+    background-color: rgba(19, 22, 20, 0.55)
+}
+
+.contenedor .button {
+    color: white;
+    border: 1px solid black ;
+    border-radius: 3px;
+    width: 130px; 
+    height: 40px;
+    background-color: rgba(19, 22, 20, 0.80);
+    cursor: pointer;
+    font-family:'Genos', sans-serif;
+    font-size: 16px;
+    text-align: center;
+}

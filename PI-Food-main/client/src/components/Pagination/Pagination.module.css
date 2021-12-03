@@ -1,0 +1,16 @@
+.pageNumber{
+    display: flex;
+    justify-content: center;
+}
+
+.pageNumber li{
+    padding:10px;
+    cursor: pointer;
+    background-color:  rgba(19, 22, 20, 0.90); 
+    margin: 3px;
+    border-radius: 8px;
+}
+.active{
+    border :2px solid #F8961E;
+    color:#FB5607;      
+}

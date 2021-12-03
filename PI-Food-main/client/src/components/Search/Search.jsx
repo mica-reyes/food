@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getRecipesByName } from "../actions";
+import { getRecipesByName } from "../../actions/index";
+import style from '../Search/Search.module.css'
 
 
 export default function Search() {
@@ -19,9 +20,8 @@ export default function Search() {
     }
     return(
         <form >
-            <label>Search recipe...</label>
-            <input onChange={onInputChange} value={name}/>
-            <button onClick={onClick}>Search</button> 
+            <input onChange={onInputChange} value={name} className={style.input} placeholder= 'Search recipe...'/>
+            <button onClick={onClick} className={style.button}>Search</button> 
         </form>
     )
 }

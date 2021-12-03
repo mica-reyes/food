@@ -1,7 +1,7 @@
 import React from "react";
 import style from './Pagination.module.css'
 
-export default function Pagination({recipesPerPage, allRecipes, paged}) {
+export default function Pagination({recipesPerPage, allRecipes, paged, currentPage}) {
     const pages=[];
     
     for(let i=1; i<=Math.ceil(allRecipes/recipesPerPage); i++){
@@ -13,7 +13,7 @@ export default function Pagination({recipesPerPage, allRecipes, paged}) {
                 <ul className={style.pageNumber}>
                     {
                         pages?.map(number=>{return(
-                            <li onClick={()=>paged(number)} key= {number} className={style.li} style={{cursor:'pointer'}}>{number}
+                            <li onClick={()=>paged(number)} key= {number} className={currentPage===number? style.active:null } >{number}
                         </li>
                     )
                 })

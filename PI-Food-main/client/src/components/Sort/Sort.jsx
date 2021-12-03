@@ -1,7 +1,7 @@
 import React from "react";
-import { sortName, sortScore} from "../actions";
+import { sortName, sortScore} from "../../actions";
 import { useDispatch } from "react-redux";
-
+import style from '../Sort/Sort.module.css' 
 
 export default function Sort() {
     const dispatch= useDispatch()
@@ -15,22 +15,19 @@ export default function Sort() {
       }
     return(
         <div>
-            <div>
                 <label>Order by</label>
-                <select onChange={onChangeName}>
+                <select onChange={onChangeName} className={style.select}>
                     {/* <option value="" selected disabled>Select option</option> */}
                     <option value="A_Z">A-Z</option>
                     <option value="Z_A">Z-A</option>
                 </select>
-            </div>
-            <div>
+
                 <label>Order by Score</label>
-                <select onChange={onChangeScore}>
+                <select onChange={onChangeScore} className={style.select}>
                      {/* <option value="" selected disabled>Select option</option> */}
                     <option value="0-100">0-100</option>
                     <option value="100-0">100-0</option>
                 </select>
-            </div>
         </div>
     )
 }

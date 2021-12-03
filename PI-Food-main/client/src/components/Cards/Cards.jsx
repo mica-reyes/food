@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "./Card";
+import Card from "../Card/Card";
 import { Link } from "react-router-dom";
 import style from './Cards.module.css'
 

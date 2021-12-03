@@ -9,7 +9,7 @@ const {
 const getRecipesByName = (req,res,next)=>{
     try { 
         const {name}= req.query
-        const apiRecipesPromise= axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
+        const apiRecipesPromise= axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=30`)
         const dbRecipesPromise= Recipe.findAll({include: Diet})
     Promise.all([apiRecipesPromise, dbRecipesPromise])
     .then(resp=>{
