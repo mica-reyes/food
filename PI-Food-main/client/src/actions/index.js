@@ -5,6 +5,7 @@ export const GET_RECIPES_BY_NAME ='GET_RECIPES_BY_NAME';
 export const SORT_NAME ='SORT_NAME';
 export const FILTER_BY_DIETS='FILTER_BY_DIETS';
 export const SORT_SCORE ='SORT_SCORE';
+export const POST_RECIPE='POST_RECIPE'
 
 export function getRecipes(){
     return function(dispatch){
@@ -39,6 +40,17 @@ export function getDiets(){
        })
     }
 }
+
+export function postRecipe(recipe){
+    return async function(dispatch){
+        const awaitRecipe= await axios.post('http://localhost:3001/recipe', recipe)
+        dispatch({
+            type: POST_RECIPE,
+            payload: awaitRecipe.data
+        })
+    }
+}
+
 export function sortName(order){
     return {
         type: SORT_NAME,

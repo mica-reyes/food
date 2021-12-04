@@ -1,12 +1,9 @@
-import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import { getRecipes } from "../../actions";
+import { postRecipe} from "../../actions";
 import { useHistory } from "react-router";
 import style from '../Form/Form.module.css'
-
-
 
 export default function Form() {
     const allDiets= useSelector((state)=>state.diets)
@@ -36,7 +33,7 @@ export default function Form() {
         })
     }
 
-    function selectDiets(e) {
+    function handleSelect(e) {
     if(e.target.checked){
         setRecipe({
             ...recipe,
@@ -52,37 +49,41 @@ export default function Form() {
         }    
     }
 
+
     function handleSubmit(e) {
         e.preventDefault()
-        axios.post('http://localhost:3001/recipe', recipe)
-        .then((resp)=>{
-            history.push(`/details/${resp.data.id}`)
-            dispatch(getRecipes())
-        }) 
+        dispatch(postRecipe(recipe))
+        history.push(`/home`)
     }
 
     return(
         <div className={style.contenedor}>
             <form onSubmit={handleSubmit} value=''>    
             <div>
-                <label>Name</label>
-                <input type="text" placeholder='Name...' onChange={handleChange}  name='name' value={recipe.recipes.name} required/>
-            </div>
-            <div>
-                <label>Summary</label>
-                <input type="text" placeholder='Summary...' onChange={handleChange}  name='summary' value={recipe.recipes.summary}/>
-            </div>
-            <div>
-                <label>Score</label>
-                <input type="number" min="0" max="100" placeholder='Score...' onChange={handleChange} name='score' velue={recipe.recipes.summary}/>
-            </div>
-            <div>
-                <label>Health Score</label>
-                <input type="number" min="0" max="100" placeholder='Health Score...' onChange={handleChange}  name='healthScore' value={recipe.recipes.healthScore}/>
-            </div>
-            <div>
-                <label>instructions</label>
-                <input type="text" placeholder='instructions...' onChange={handleChange}  name='instructions' value={recipe.recipes.instructions} required/>
+                <div>
+                    <label>Name</label>
+                    <br />
+                    <input type="text" placeholder='Name...' onChange={handleChange}  name='name' value={recipe.recipes.name} required/>
+                </div>
+                <div>
+                    <label>Summary</label>
+                <br/>
+                <textarea onChange={handleChange} cols="30" rows="3" name='summary' value={recipe.recipes.summary}></textarea>    
+                </div>
+                <div>
+                    <label>Score</label>
+                    <br />
+                    <input type="number" min="0" max="100" placeholder='Score...' onChange={handleChange} name='score' velue={recipe.recipes.summary}/>
+                </div>
+                <div>
+                    <label>Health Score</label>
+                    <br />  
+                    <input type="number" min="0" max="100" placeholder='Health Score...' onChange={handleChange}  name='healthScore' value={recipe.recipes.healthScore}/>
+                </div>
+                <div>
+                    <label>instructions</label>
+                    <textarea onChange={handleChange} cols="30" rows="3" name='instructions' value={recipe.recipes.instructions}></textarea>
+                </div>
             </div>
                 <label>select diets</label> 
             <div className={style.select}>
@@ -91,7 +92,7 @@ export default function Form() {
                         return (
                             <div key={index}>
                                 <label >{diet.name}</label>
-                                <input type="checkbox" value={diet.id} name={diet.name} onChange={selectDiets}/>
+                                <input type="checkbox" value={diet.id} name={diet.name} onChange={handleSelect}/>
                             </div>
                             )
                         })

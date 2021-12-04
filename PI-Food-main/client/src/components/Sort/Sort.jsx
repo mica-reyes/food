@@ -18,12 +18,14 @@ export default function Sort() {
                 <label>Order by</label>
                 <select onChange={onChangeName} className={style.select}>
                     {/* <option value="" selected disabled>Select option</option> */}
+                    <option value=''>select</option>
                     <option value="A_Z">A-Z</option>
                     <option value="Z_A">Z-A</option>
                 </select>
 
                 <label>Order by Score</label>
                 <select onChange={onChangeScore} className={style.select}>
+                <option value=''>select</option>
                      {/* <option value="" selected disabled>Select option</option> */}
                     <option value="0-100">0-100</option>
                     <option value="100-0">100-0</option>

@@ -13,6 +13,7 @@
 
 .contenedor{
     background-color: rgba(19, 22, 20, 0.80);
+    width: 70%;
 }
 div{
     margin: 10px;
@@ -21,8 +22,17 @@ div{
 input{
     border-radius: 3px;
     border: 1px solid black;
+    color: black
+}
+
+textarea{
+    color: black
 }
 .select{
     display: grid;
     grid-template-columns: repeat(3, 33.3%);
+    justify-items: end;
+}
+input[type="checkbox" i] {
+    cursor: pointer;
 }

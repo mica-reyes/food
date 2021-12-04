@@ -16,7 +16,7 @@ export default function Filter() {
             <label>Seleccionar Receta</label>
             <select onChange={handleChange} className={style.select}>{
                 <>
-                {/* <option value='select' selected disabled>select</option> */}
+                <option value=''>select</option> 
                { allDiets.map(el=>{
                     return <option value={el.name} key={el.id}>{el.name}</option>
                 })}
