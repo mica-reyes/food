@@ -5,7 +5,8 @@ export const GET_RECIPES_BY_NAME ='GET_RECIPES_BY_NAME';
 export const SORT_NAME ='SORT_NAME';
 export const FILTER_BY_DIETS='FILTER_BY_DIETS';
 export const SORT_SCORE ='SORT_SCORE';
-export const POST_RECIPE='POST_RECIPE'
+export const POST_RECIPE='POST_RECIPE';
+export const GET_RECIPES_BY_ID='GET_RECIPES_BY_ID'
 
 export function getRecipes(){
     return function(dispatch){
@@ -41,16 +42,6 @@ export function getDiets(){
     }
 }
 
-export function postRecipe(recipe){
-    return async function(dispatch){
-        const awaitRecipe= await axios.post('http://localhost:3001/recipe', recipe)
-        dispatch({
-            type: POST_RECIPE,
-            payload: awaitRecipe.data
-        })
-    }
-}
-
 export function sortName(order){
     return {
         type: SORT_NAME,
@@ -71,3 +62,26 @@ export function filterByDiets(filter){
         payload:filter
     }
 }
+
+
+/* export function postRecipe(recipe){
+    return async function(dispatch){
+        const awaitRecipe= await axios.post('http://localhost:3001/recipe', recipe)
+        dispatch({
+            type: POST_RECIPE,
+            payload: awaitRecipe.data
+        })
+    }
+}
+ */
+
+export function getRecipeById(id){
+    return async function(dispatch){
+       const recipe= await axios.get(`http://localhost:3001/recipes/${id}`)
+       dispatch({
+           type:GET_RECIPES_BY_ID,
+           payload: recipe.data
+       })
+    }
+}
+

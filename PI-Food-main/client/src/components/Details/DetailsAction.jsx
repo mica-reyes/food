@@ -1,23 +1,28 @@
-/* import React, { useEffect, useState } from "react";
+import React, { useEffect/* , useState */ } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios'
+//import axios from 'axios'
 import { useParams } from "react-router";
-import style from '../Details/Details.module.css'
+import style from '../Details/Details.module.css';
+import { getRecipeById } from "../../actions";
+import {useSelector, useDispatch} from 'react-redux'
 
 export default function Details() {
-    const [recipe, setRecipe]= useState({})
+    //const [recipe, setRecipe]= useState({})
     const {id}= useParams()
+    const dispatch= useDispatch()
+    const recipe= useSelector((state)=>state.details)
 
-    function getRecipeById(id) {
+    /*     function getRecipeById(id) {
         axios.get(`http://localhost:3001/recipes/${id}`)
         .then(recipe=>{
             setRecipe(recipe.data)
             console.log(recipe.data)
         })
-    }
-
+    } */
+    
     useEffect(()=>{
-        getRecipeById(id)
+        dispatch(getRecipeById(id))
+        console.log(recipe)
     }, [id])
     return(
         <div className={style.one}>
@@ -70,4 +75,3 @@ export default function Details() {
         </div>
     )
 }
- */

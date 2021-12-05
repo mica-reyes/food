@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import { postRecipe} from "../../actions";
+//import { postRecipe} from "../../actions";
+import { getRecipes} from "../../actions";
 import { useHistory } from "react-router";
 import style from '../Form/Form.module.css'
+import axios from "axios";
 
 export default function Form() {
     const allDiets= useSelector((state)=>state.diets)
@@ -49,13 +51,14 @@ export default function Form() {
         }    
     }
 
-
     function handleSubmit(e) {
         e.preventDefault()
-        dispatch(postRecipe(recipe))
-        history.push(`/home`)
+        axios.post('http://localhost:3001/recipe', recipe)
+        .then((resp)=>{
+            history.push(`/details/${resp.data.id}`)
+            dispatch(getRecipes())
+        }) 
     }
-
     return(
         <div className={style.contenedor}>
             <form onSubmit={handleSubmit} value=''>    
@@ -103,3 +106,11 @@ export default function Form() {
         </div>
     )
 }
+
+/* 
+    function handleSubmit(e) {
+        e.preventDefault()
+        dispatch(postRecipe(recipe))
+        history.push(`/home`)
+    }
+ */
