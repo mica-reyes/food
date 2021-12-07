@@ -100,8 +100,9 @@ export default function Form() {
                     allDiets.map((diet, index)=>{
                         return (
                             <div key={index}>
-                                <label >{diet.name}</label>
+                                <label >{diet.name}
                                 <input type="checkbox" value={diet.id} name={diet.name} onChange={handleSelect}/>
+                                </label>
                             </div>
                             )
                         })

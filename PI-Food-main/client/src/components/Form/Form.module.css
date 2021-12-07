@@ -33,6 +33,9 @@ textarea{
 }
 input[type="checkbox" i] {
     cursor: pointer;
+    height: 16px;
+    width: 17px;
+    margin-left: 7px;
 }
 input{
     font-family: monospace;
@@ -40,4 +43,7 @@ input{
     background-color: rgba(99, 55, 44, 0.15);
     border: 1px solid white;
     border-radius: 3px;
+}
+.select label{
+    cursor: pointer;
 }

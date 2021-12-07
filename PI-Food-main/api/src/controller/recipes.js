@@ -27,10 +27,6 @@ const getRecipesByName = (req,res,next)=>{
                 diets: el.diets,
                 score: el.spoonacularScore,
                 healthScore: el.healthScore,
-                //vegetarian: el.vegetarian,
-                //vegan: el.vegan,
-                //glutenFree: el.glutenFree,
-                //dairyFree: el.dairyFree,
             }
         })
         let dbRecipesFormat= dbRecipes?.map(el=>{return{

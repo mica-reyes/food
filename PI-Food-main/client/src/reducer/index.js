@@ -3,7 +3,7 @@ const initialState={
     recipes:[],
     diets:[],
     filteredRecipes:[],
-    loading: false
+    loading: false,
 }
 
 function rootReducer(state=initialState, action){

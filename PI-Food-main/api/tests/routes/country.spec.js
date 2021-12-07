@@ -7,7 +7,7 @@ const { Recipe, conn } = require('../../src/db.js');
 const agent = session(app);
 const recipe = {
   name: 'Milanea a la napolitana',
-  //summary: 'kjsaklasjlk'
+  summary: 'kjsaklasjlk'
 };
 
 describe('Recipe routes', () => {
@@ -23,3 +23,20 @@ describe('Recipe routes', () => {
     );
   });
 });
+
+describe('Diets routes', () => {
+  before(() => conn.authenticate()
+  .catch((err) => {
+    console.error('Unable to connect to the database:', err);
+  }));
+  describe('GET /diets', () => {
+    it('should get 200', () =>
+      agent.get('/diets').expect(200)
+      .expect(function(res) {
+        expect(res.body.length).equal(13);
+      })
+      
+    );
+  });
+});
+

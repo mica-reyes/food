@@ -1,4 +1,4 @@
-const { Recipe, conn } = require('../../src/db.js');
+const { Recipe, conn, Diet } = require('../../src/db.js');
 const { expect } = require('chai');
 
 describe('Recipe model', () => {
@@ -16,6 +16,21 @@ describe('Recipe model', () => {
       });
       it('should work when its a valid name', () => {
         Recipe.create({ name: 'Milanesa a la napolitana' });
+      });
+    });
+  });
+});
+
+describe('Diet model', () => {
+  before(() => conn.authenticate()
+    .catch((err) => {
+      console.error('Unable to connect to the database:', err);
+    }));
+  describe('Validators', () => {
+    beforeEach(() => Recipe.sync({ force: true }));
+    describe('name', () => {
+      xit('should work when its a valid name', () => {
+        Diet.create({ name: 'libre de gluten' });
       });
     });
   });

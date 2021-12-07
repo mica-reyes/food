@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 export default function Cards({currentRecipes}) {
     const loadingState= useSelector(state=>state.loading)
     function loadingFunction(){
-        if(loadingState){
+        if(loadingState ){
             return <h1 className={style.loading}>LOADING...</h1>
         }
         return (!currentRecipes.length?

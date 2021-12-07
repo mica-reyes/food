@@ -1,5 +1,5 @@
 import React from "react";
-import { filterByDiets, getRecipes } from "../../actions";
+import { filterByDiets } from "../../actions";
 import {useDispatch, useSelector} from 'react-redux';
 import style from '../Filter/Filter.module.css';
 
