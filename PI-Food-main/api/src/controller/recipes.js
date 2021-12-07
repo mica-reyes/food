@@ -46,12 +46,13 @@ const getRecipesByName = (req,res,next)=>{
         let allRecipes= apiRecipesFormat.concat(dbRecipesFormat)
         //let allRecipes=[...apiRecipesFormat, ...dbRecipesFormat]
         if(name){
-            const fil= allRecipes.filter(el=>el.name.toLowerCase().includes(name.toLowerCase()))           
-            if(fil.length>0){
+            const fil= allRecipes.filter(el=>el.name.toLowerCase().includes(name.toLowerCase()))     
+            return res.send(fil)      
+/*             if(fil.length>0){
                return res.send(fil)
             } else{
                 res.status(404).message('Recipe no found')
-            } 
+            }  */
         }
        return res.send(allRecipes)
     })

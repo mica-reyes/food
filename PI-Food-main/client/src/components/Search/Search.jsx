@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getRecipesByName } from "../../actions/index";
+import { getRecipes, getRecipesByName } from "../../actions/index";
 import style from '../Search/Search.module.css'
 
 
-export default function Search() {
+export default function Search({setCurrentPage}) {
     const dispatch= useDispatch()
     const [name, setName]= useState('')
 
@@ -17,9 +17,15 @@ export default function Search() {
     function onClick(e) {
         e.preventDefault()
         dispatch(getRecipesByName(name))
+        setCurrentPage(1)
+    }
+
+    function volverAcargar(){
+        dispatch(getRecipes())
     }
     return(
         <form >
+            <button onChange={volverAcargar} className={style.buttonX}>X</button>
             <input onChange={onInputChange} value={name} className={style.input} placeholder= 'Search recipe...'/>
             <button onClick={onClick} className={style.button}>Search</button> 
         </form>

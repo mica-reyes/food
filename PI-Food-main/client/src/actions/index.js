@@ -5,8 +5,6 @@ export const GET_RECIPES_BY_NAME ='GET_RECIPES_BY_NAME';
 export const SORT_NAME ='SORT_NAME';
 export const FILTER_BY_DIETS='FILTER_BY_DIETS';
 export const SORT_SCORE ='SORT_SCORE';
-export const POST_RECIPE='POST_RECIPE';
-export const GET_RECIPES_BY_ID='GET_RECIPES_BY_ID'
 
 export function getRecipes(){
     return function(dispatch){
@@ -22,13 +20,17 @@ export function getRecipes(){
 
 export function getRecipesByName(name){
     return function(dispatch){
-        axios.get(`http://localhost:3001/recipes?name=${name}`)
-        .then(resp=>{
-            dispatch({
-                type: GET_RECIPES_BY_NAME,
-                payload: resp.data
+        try {
+            axios.get(`http://localhost:3001/recipes?name=${name}`)
+            .then(resp=>{
+                dispatch({
+                    type: GET_RECIPES_BY_NAME,
+                    payload: resp.data
+                })
             })
-        })
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 
@@ -50,19 +52,19 @@ export function sortName(order){
 }
 
  export function sortScore(order){
-    return {
-        type: SORT_SCORE,
-        payload: order
+     return {
+         type: SORT_SCORE,
+         payload: order
+        }
+    } 
+    
+    
+    export function filterByDiets(filter){
+        return{
+            type: FILTER_BY_DIETS,
+            payload:filter
+        }
     }
-} 
-
-export function filterByDiets(filter){
-    return{
-        type: FILTER_BY_DIETS,
-        payload:filter
-    }
-}
-
 
 /* export function postRecipe(recipe){
     return async function(dispatch){
@@ -73,15 +75,15 @@ export function filterByDiets(filter){
         })
     }
 }
- */
+*/
 
-export function getRecipeById(id){
+/* export function getRecipeById(id){
     return async function(dispatch){
-       const recipe= await axios.get(`http://localhost:3001/recipes/${id}`)
-       dispatch({
-           type:GET_RECIPES_BY_ID,
-           payload: recipe.data
-       })
+        const recipe= await axios.get(`http://localhost:3001/recipes/${id}`)
+        dispatch({
+            type:GET_RECIPES_BY_ID,
+            payload: recipe.data
+        })
     }
-}
+} */
 

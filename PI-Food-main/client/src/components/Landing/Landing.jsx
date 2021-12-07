@@ -7,7 +7,7 @@ export default function Landing() {
         <div                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       >
             <h1 className={style.h1}>Henry Food </h1>
             <Link to='/home'>
-                <button className={style.button}>Ingresar</button>
+                <button className={style.button}>Enter</button>
             </Link>
         </div>
     )

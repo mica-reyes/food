@@ -2,8 +2,7 @@ import './App.css';
 import {Route, Switch} from 'react-router-dom';
 import Landing from './components/Landing/Landing'
 import Home from './components/Home/Home';
-//import Details from './components/Details/Details';
-import DetailsAction from './components/Details/DetailsAction';
+import Details from './components/Details/Details';
 import RecipeCreate from './components/Create/Create';
 import { useEffect } from "react";
 import React from 'react';
@@ -33,8 +32,7 @@ function App() {
           <Home/>
         </Route>
         <Route path='/details/:id' exact>
-         {/*  <Details/> */}
-          <DetailsAction/>
+          <Details/>
         </Route>
       </Switch>
     </div>

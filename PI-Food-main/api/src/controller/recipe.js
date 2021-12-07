@@ -4,10 +4,11 @@ const postRecipe= (req, res, next)=>{
     try {
         const {recipes, dietId}=req.body
         if(recipes){
-            const {name, summary, score, healthScore, instructions}= recipes
+            const {name, summary, score, healthScore, instructions, image}= recipes
             Recipe.create({
                 name, 
                 summary, 
+                image,
                 score, 
                 healthScore, 
                 instructions

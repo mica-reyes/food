@@ -9,6 +9,21 @@
     font-family:'Genos', sans-serif;
     font-size: 16px;
     text-align: center;
+    margin-left: 2px;
+}
+
+.buttonX{
+    color: white;
+    border: 1px solid black ;
+    border-radius: 3px;
+    width: 25px; 
+    height: 22px;
+    background-color: rgba(19, 22, 20, 0.80);
+    cursor: pointer;
+    font-family:'Genos', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    margin-right: 1px;
 }
 
 .input{
@@ -17,4 +32,5 @@
     border: rgba(19, 22, 20, 0.90);
     border-radius: 2px;
     font-size: 15px;
+    margin-top:11px
 }

@@ -19,14 +19,12 @@ div{
     margin: 10px;
     border-radius: 4px;
 }
-input{
-    border-radius: 3px;
-    border: 1px solid black;
-    color: black
-}
 
 textarea{
-    color: black
+    color: white¬;
+    background-color: rgba(99, 55, 44, 0.15);
+    border-radius: 3px;
+    border: 1px solid white
 }
 .select{
     display: grid;
@@ -35,4 +33,11 @@ textarea{
 }
 input[type="checkbox" i] {
     cursor: pointer;
+}
+input{
+    font-family: monospace;
+    color: white;
+    background-color: rgba(99, 55, 44, 0.15);
+    border: 1px solid white;
+    border-radius: 3px;
 }

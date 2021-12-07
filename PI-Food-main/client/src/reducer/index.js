@@ -1,8 +1,8 @@
-import { GET_RECIPES, GET_DIETS, GET_RECIPES_BY_NAME, SORT_NAME, FILTER_BY_DIETS, SORT_SCORE,/*  POST_RECIPE, */ GET_RECIPES_BY_ID } from '../actions/index';
+import { GET_RECIPES, GET_DIETS, GET_RECIPES_BY_NAME, SORT_NAME, FILTER_BY_DIETS, SORT_SCORE } from '../actions/index';
 const initialState={
     recipes:[],
     diets:[],
-    details:{}
+    filteredRecipes:[]
 }
 
 function rootReducer(state=initialState, action){
@@ -18,53 +18,69 @@ function rootReducer(state=initialState, action){
                 diets: action.payload
             }
         case GET_RECIPES_BY_NAME:
-            return{
-                ...state,
-                recipes: action.payload
+            if(!action.payload.length){
+                alert('recipe no found')
+                return state
+            }else{
+                return{
+                    ...state,
+                    recipes: action.payload
+                }
             }
-/*      case POST_RECIPE:
-            return{
-                ...state,
-                recipes: [...state.recipes, action.payload]     
-            } */
-        case GET_RECIPES_BY_ID:
-            return{
-                ...state,
-                details: action.payload
-            }
+            break;
         case SORT_NAME:
-            const recipesSortName= [...state.recipes]
-            const orderedRecipes= recipesSortName?.sort((a, b)=> {
+            const copyyRecipes= state.filteredRecipes.length? [...state.filteredRecipes]:[...state.recipes]
+            const orderedRecipes= copyyRecipes.sort((a, b)=> {
                 if(a.name.toLowerCase()>b.name.toLowerCase() && action.payload==='A_Z') return 1
                 if(a.name.toLowerCase()>b.name.toLowerCase() && action.payload==='Z_A') return -1
                 if(a.name.toLowerCase()<b.name.toLowerCase() && action.payload==='A_Z') return -1
                 if(a.name.toLowerCase()<b.name.toLowerCase() && action.payload==='Z_A') return  1
-                return 0
-                
+                return 0                
             })
-            return{
-                ...state,
-                recipes: orderedRecipes
-            }
+            if(state.filteredRecipes.length){
+                return{
+                    ...state,
+                    filteredRecipes:orderedRecipes
+                }
+            }else{
+                return{
+                    ...state,
+                    recipes: orderedRecipes
+                }
+            }  
         case SORT_SCORE:   
-        const recipesSortScore= [...state.recipes]
-        const orderedRecipesScore= recipesSortScore?.sort((a, b)=> {
-            if(a.score>b.score && action.payload==="0-100") return 1
-            if(a.score>b.score && action.payload==='100-0') return -1
-            if(a.score<b.score && action.payload==="0-100") return -1
-            if(a.score<b.score && action.payload==='100-0') return  1
-            return 0
-        })
-        return{
-            ...state,
-            recipes: orderedRecipesScore
-        }
+            const copyRecipesScore= state.filteredRecipes.length? [...state.filteredRecipes]:[...state.recipes]
+            const orderedRecipesScore= copyRecipesScore?.sort((a, b)=> {
+                if(a.score>b.score && action.payload==="0-100") return 1
+                if(a.score<b.score && action.payload==="0-100") return -1
+                if(a.score>b.score && action.payload==='100-0') return -1
+                if(a.score<b.score && action.payload==='100-0') return  1
+                return 0
+            })
+            if(state.filteredRecipes.length){
+                return{
+                    ...state,
+                    filteredRecipes:orderedRecipesScore
+                }
+            }else{
+                return{
+                    ...state,
+                    recipes: orderedRecipesScore
+                }
+            } 
         case FILTER_BY_DIETS:
             const copyRecipes= [...state.recipes]
             const filter= copyRecipes.filter(recipe=>recipe.diets.find(el=>el===action.payload))
-            return{
-                ...state,
-                recipes: filter
+            if(!filter.length && action.payload!=='all'){
+                alert('recipes no found')
+                return{
+                    ...state
+                }
+            }else{
+                return{
+                    ...state,
+                    filteredRecipes: filter
+                }
             } 
         default:
             return state;
@@ -73,7 +89,3 @@ function rootReducer(state=initialState, action){
 
 export default rootReducer;
 
-//a>b--->asc
-//a<b---->asc
-//a>b---->des
-//a<b---->des

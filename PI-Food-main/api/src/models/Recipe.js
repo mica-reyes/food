@@ -12,16 +12,11 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
-      validate: {
-        notEmpty:  {
-          msg: "Must be an integer number of pennies"
-        }
-      },
       allowNull: false,
     },
     image: {
       type: DataTypes.STRING,
-      defaultValue: 'https://media.istockphoto.com/vectors/sketches-from-groceries-products-vector-id964367658'
+      defaultValue: 'https://i.pinimg.com/564x/cf/9e/14/cf9e14c5a0201534f703a67e52f1cc2a.jpg'
     },
     summary: {
       type: DataTypes.TEXT,

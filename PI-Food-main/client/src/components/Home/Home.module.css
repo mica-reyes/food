@@ -18,3 +18,20 @@
     font-size: 16px;
     text-align: center;
 }
+
+.flecha{
+    text-align: initial;
+}
+
+.flecha .button {
+    color: white;
+    border: 1px solid black ;
+    border-radius: 3px;
+    width: 45px; 
+    height: 25px;
+    background-color: rgba(19, 22, 20, 0.80);
+    cursor: pointer;
+    font-family:'Genos', sans-serif;
+    font-size: 16px;
+    text-align: center;
+}

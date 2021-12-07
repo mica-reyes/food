@@ -1,4 +1,4 @@
-/* import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import { useParams } from "react-router";
@@ -12,7 +12,6 @@ export default function Details() {
         axios.get(`http://localhost:3001/recipes/${id}`)
         .then(recipe=>{
             setRecipe(recipe.data)
-            console.log(recipe.data)
         })
     }
 
@@ -23,12 +22,12 @@ export default function Details() {
         <div className={style.one}>
             <div className={style.three}>
                 <div>
-                    <h3>summary</h3>
+                    <h3>summary:</h3>
                     <p>{recipe.summary}</p>
                     {
                         recipe.instructions && 
                         <div>
-                        <h3>instructions</h3>
+                        <h3>instructions:</h3>
                         <p>{recipe.instructions}</p>
                         </div>
                     }
@@ -36,7 +35,7 @@ export default function Details() {
                 {
                     recipe.dishTypes &&       
                     <div>
-                    <h3>dish types</h3>
+                    <h3>dish types:</h3> 
                     <ul>
                         {recipe.dishTypes?.map((el, index)=>{
                             return <li key={index}>{el}</li>
@@ -47,7 +46,7 @@ export default function Details() {
                 {
                     recipe.diets &&
                     <div>
-                        <h3>diets types</h3>
+                        <h3>diets types:</h3>
                         <ul>
                             {
                                 recipe.diets?.map((el, index)=>{
@@ -58,7 +57,7 @@ export default function Details() {
                     </div>
                         }
             <Link to='/home'>
-                <button className={style.button}>VOLVER</button>
+                <button className={style.button}>back go home</button>
             </Link> 
             </div>
 <div className={style.two}>
@@ -70,4 +69,3 @@ export default function Details() {
         </div>
     )
 }
- */

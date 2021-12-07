@@ -1,10 +1,10 @@
 import React from "react";
 import style from './Pagination.module.css'
 
-export default function Pagination({recipesPerPage, allRecipes, paged, currentPage}) {
+export default function Pagination({recipesPerPage, allRecipes, filteredRecipes, paged, currentPage}) {
     const pages=[];
-    
-    for(let i=1; i<=Math.ceil(allRecipes/recipesPerPage); i++){
+    let numerador= filteredRecipes? filteredRecipes: allRecipes
+    for(let i=1; i<=Math.ceil(numerador/recipesPerPage); i++){
         pages.push(i)
     }
     return(

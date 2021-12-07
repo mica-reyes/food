@@ -66,7 +66,7 @@ export default function Form() {
                 <div>
                     <label>Name</label>
                     <br />
-                    <input type="text" placeholder='Name...' onChange={handleChange}  name='name' value={recipe.recipes.name} required/>
+                    <input type="text" placeholder='Name...' onChange={handleChange}  name='name' value={recipe.recipes.name} required />
                 </div>
                 <div>
                     <label>Summary</label>
@@ -74,17 +74,23 @@ export default function Form() {
                 <textarea onChange={handleChange} cols="30" rows="3" name='summary' value={recipe.recipes.summary}></textarea>    
                 </div>
                 <div>
+                <div>
+                    <label>image</label>
+                    <br />
+                    <input type="text" onChange={handleChange} name='image' value={recipe.recipes.image} />
+                </div>
                     <label>Score</label>
                     <br />
-                    <input type="number" min="0" max="100" placeholder='Score...' onChange={handleChange} name='score' velue={recipe.recipes.summary}/>
+                    <input type="number" min="0" max="100" onChange={handleChange} name='score' velue={recipe.recipes.summary} required/>
                 </div>
                 <div>
                     <label>Health Score</label>
                     <br />  
-                    <input type="number" min="0" max="100" placeholder='Health Score...' onChange={handleChange}  name='healthScore' value={recipe.recipes.healthScore}/>
+                    <input type="number" min="0" max="100" onChange={handleChange}  name='healthScore' value={recipe.recipes.healthScore} required/>
                 </div>
                 <div>
                     <label>instructions</label>
+                    <br />
                     <textarea onChange={handleChange} cols="30" rows="3" name='instructions' value={recipe.recipes.instructions}></textarea>
                 </div>
             </div>
