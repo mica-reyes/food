@@ -10,14 +10,9 @@ export default function Filter({setCurrentPage}) {
 
     function handleChange(e) {
         e.preventDefault()
-        if(e.target.value==='all'){
-            dispatch(getRecipes())
-        }else{
-            dispatch(filterByDiets(e.target.value))
-            setCurrentPage(1)  
-        }
+        dispatch(filterByDiets(e.target.value))
+        setCurrentPage(1)  
     }
-    
     return(
         <div>
             <label>Filter by Diet</label>

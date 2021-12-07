@@ -5,9 +5,13 @@ export const GET_RECIPES_BY_NAME ='GET_RECIPES_BY_NAME';
 export const SORT_NAME ='SORT_NAME';
 export const FILTER_BY_DIETS='FILTER_BY_DIETS';
 export const SORT_SCORE ='SORT_SCORE';
+export const LOADING = 'LOADING'
 
 export function getRecipes(){
     return function(dispatch){
+        dispatch({
+            type: LOADING
+        })
         axios.get('http://localhost:3001/recipes')
         .then(resp=>{
             dispatch({
@@ -20,6 +24,9 @@ export function getRecipes(){
 
 export function getRecipesByName(name){
     return function(dispatch){
+        dispatch({
+            type: LOADING
+        })
         try {
             axios.get(`http://localhost:3001/recipes?name=${name}`)
             .then(resp=>{

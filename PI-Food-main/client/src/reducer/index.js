@@ -1,8 +1,9 @@
-import { GET_RECIPES, GET_DIETS, GET_RECIPES_BY_NAME, SORT_NAME, FILTER_BY_DIETS, SORT_SCORE } from '../actions/index';
+import { GET_RECIPES, GET_DIETS, GET_RECIPES_BY_NAME, SORT_NAME, FILTER_BY_DIETS, SORT_SCORE, LOADING } from '../actions/index';
 const initialState={
     recipes:[],
     diets:[],
-    filteredRecipes:[]
+    filteredRecipes:[],
+    loading: false
 }
 
 function rootReducer(state=initialState, action){
@@ -10,7 +11,8 @@ function rootReducer(state=initialState, action){
         case GET_RECIPES:
             return {
                 ...state,
-                recipes: action.payload
+                recipes: action.payload,
+                loading: false
             }
         case GET_DIETS:
             return{
@@ -18,16 +20,11 @@ function rootReducer(state=initialState, action){
                 diets: action.payload
             }
         case GET_RECIPES_BY_NAME:
-            if(!action.payload.length){
-                alert('recipe no found')
-                return state
-            }else{
                 return{
                     ...state,
-                    recipes: action.payload
+                    recipes: action.payload,
+                    loading: false
                 }
-            }
-            break;
         case SORT_NAME:
             const copyyRecipes= state.filteredRecipes.length? [...state.filteredRecipes]:[...state.recipes]
             const orderedRecipes= copyyRecipes.sort((a, b)=> {
@@ -71,10 +68,15 @@ function rootReducer(state=initialState, action){
         case FILTER_BY_DIETS:
             const copyRecipes= [...state.recipes]
             const filter= copyRecipes.filter(recipe=>recipe.diets.find(el=>el===action.payload))
-            if(!filter.length && action.payload!=='all'){
-                alert('recipes no found')
+            if(action.payload==='all'){
+                   return{
+                       ...state,
+                       filteredRecipes:[]
+                   }
+            }else if(!filter.length){
+                alert('no matches found')
                 return{
-                    ...state
+                   ...state,
                 }
             }else{
                 return{
@@ -82,6 +84,11 @@ function rootReducer(state=initialState, action){
                     filteredRecipes: filter
                 }
             } 
+        case LOADING:
+            return{
+                ...state,
+                loading: true
+            }
         default:
             return state;
     }

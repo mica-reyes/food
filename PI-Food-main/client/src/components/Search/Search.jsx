@@ -22,7 +22,7 @@ export default function Search({setCurrentPage}) {
 
     function volverAcargar(){
         dispatch(getRecipes())
-    }
+    } 
     return(
         <form >
             <button onChange={volverAcargar} className={style.buttonX}>X</button>

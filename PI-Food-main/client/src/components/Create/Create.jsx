@@ -7,7 +7,7 @@ export default function Create() {
     return(
         <div>
             <Link to='/home'>
-            <button className={style.button}>Back go home</button>
+            <button className={style.button}>Go back</button>
             </Link>
             <Form/>
         </div>
