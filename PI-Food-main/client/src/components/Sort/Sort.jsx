@@ -20,17 +20,17 @@ export default function Sort() {
         <div>
                 <label>Order by Name</label>
                 <select onChange={onChangeName} className={style.select}>
-                    <option value=''>select</option>
-                    <option value="default">default</option>
-                    <option value="A_Z">A-Z</option>
-                    <option value="Z_A">Z-A</option>
+                  <option value=''>select</option>
+                  <option value="default">default</option>
+                  <option value="A_Z">A-Z</option>
+                  <option value="Z_A">Z-A</option>
                 </select>
 
                 <label>Order by Score</label>
                 <select onChange={onChangeScore} className={style.select}>
-                <option value=''>select</option>
-                    <option value="0-100">0-100</option>
-                    <option value="100-0">100-0</option>
+                  <option value=''>select</option>
+                  <option value="0-100">0-100</option>
+                  <option value="100-0">100-0</option>
                 </select>
         </div>
     )

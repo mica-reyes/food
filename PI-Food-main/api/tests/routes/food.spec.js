@@ -7,7 +7,7 @@ const { Recipe, conn } = require('../../src/db.js');
 const agent = session(app);
 const recipe = {
   name: 'Milanea a la napolitana',
-  summary: 'kjsaklasjlk'
+  summary: 'carne + pan + huevo'
 };
 
 describe('Recipe routes', () => {
@@ -16,10 +16,10 @@ describe('Recipe routes', () => {
     console.error('Unable to connect to the database:', err);
   }));
   beforeEach(() => Recipe.sync({ force: true })
-    .then(() => Recipe.create(recipe)));
+  .then(() => Recipe.create(recipe)));
   describe('GET /recipes', () => {
     it('should get 200', () =>
-      agent.get('/recipes').expect(200)
+    agent.get('/recipes').expect(200)
     );
   });
 });
@@ -31,11 +31,10 @@ describe('Diets routes', () => {
   }));
   describe('GET /diets', () => {
     it('should get 200', () =>
-      agent.get('/diets').expect(200)
-      .expect(function(res) {
-        expect(res.body.length).equal(13);
-      })
-      
+    agent.get('/diets').expect(200)
+    .expect(function(res) {
+      expect(res.body[0].name).equal('gluten free');
+    })    
     );
   });
 });

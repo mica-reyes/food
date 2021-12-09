@@ -12,13 +12,18 @@ export function getRecipes(){
         dispatch({
             type: LOADING
         })
-        axios.get('http://localhost:3001/recipes')
-        .then(resp=>{
-            dispatch({
-                type: GET_RECIPES,
-                payload: resp.data
+        try {
+            
+            axios.get('http://localhost:3001/recipes')
+            .then(resp=>{
+                dispatch({
+                    type: GET_RECIPES,
+                    payload: resp.data
+                })
             })
-        })
+        } catch (error) {
+            console.log(error)
+        }   
     }
 }
 
@@ -43,11 +48,15 @@ export function getRecipesByName(name){
 
 export function getDiets(){
     return async function(dispatch){
-       const diets= await axios.get('http://localhost:3001/diets')
-       dispatch({
-           type:GET_DIETS,
-           payload: diets.data
-       })
+            try {
+            const diets= await axios.get('http://localhost:3001/diets')
+            dispatch({
+                type:GET_DIETS,
+                payload: diets.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 
@@ -73,24 +82,5 @@ export function sortName(order){
         }
     }
 
-/* export function postRecipe(recipe){
-    return async function(dispatch){
-        const awaitRecipe= await axios.post('http://localhost:3001/recipe', recipe)
-        dispatch({
-            type: POST_RECIPE,
-            payload: awaitRecipe.data
-        })
-    }
-}
-*/
 
-/* export function getRecipeById(id){
-    return async function(dispatch){
-        const recipe= await axios.get(`http://localhost:3001/recipes/${id}`)
-        dispatch({
-            type:GET_RECIPES_BY_ID,
-            payload: recipe.data
-        })
-    }
-} */
 

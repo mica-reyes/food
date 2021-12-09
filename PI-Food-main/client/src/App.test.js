@@ -1,10 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { getDiets } from './actions';
 import App from './App';
+import {sortName, SORT_NAME, sortScore, SORT_SCORE } from "../src/actions/index";
 
 import reducer from './reducer/index'
 
-/*  test('renders learn react link', () => {
+/*   test('renders learn react link', () => {
   render(<App />);
   const linkElement = screen.getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
@@ -15,12 +16,12 @@ describe("reducer", () => {
     expect(reducer(undefined, {})).toEqual({
       recipes:[],
       diets:[],
+      copy:[],
       filteredRecipes:[],
       loading:false});
   });
 })
 
-import {sortName, SORT_NAME, sortScore, SORT_SCORE } from "../src/actions/index";
 
 describe("Action Creators", () => {
   it('Debería retornar una action con las propiedades type SORT_NAME y payload:"A_Z"', () => {

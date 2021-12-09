@@ -15,7 +15,7 @@ const postRecipe= (req, res, next)=>{
             })
                 .then(recipe=>{
                     dietId.map(async el=>{recipe.addDiet(el)})
-                    res.send(recipe)
+                    res.json(recipe)
                 })       
             }  
     } catch (error) {

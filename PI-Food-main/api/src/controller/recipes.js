@@ -9,7 +9,7 @@ const {
 const getRecipesByName = (req,res,next)=>{
     try { 
         const {name}= req.query
-        const apiRecipesPromise= axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=30`)
+        const apiRecipesPromise= axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
         const dbRecipesPromise= Recipe.findAll({include: Diet})
     Promise.all([apiRecipesPromise, dbRecipesPromise])
     .then(resp=>{
@@ -40,17 +40,11 @@ const getRecipesByName = (req,res,next)=>{
                 diets: el.diets.map(el=>el.name),
         }}) 
         let allRecipes= apiRecipesFormat.concat(dbRecipesFormat)
-        //let allRecipes=[...apiRecipesFormat, ...dbRecipesFormat]
         if(name){
             const fil= allRecipes.filter(el=>el.name.toLowerCase().includes(name.toLowerCase()))     
-            return res.send(fil)      
-/*             if(fil.length>0){
-               return res.send(fil)
-            } else{
-                res.status(404).message('Recipe no found')
-            }  */
+            return res.json(fil)      
         }
-       return res.send(allRecipes)
+       return res.json(allRecipes)
     })
 } catch (error) {
     next(error)
@@ -62,11 +56,9 @@ const getRecipesbyId= async(req,res,next)=>{
     try {
         if(id.length>15){
            const el= await Recipe.findByPk(id, {include: Diet})
-           console.log(el)
            const obj={
                 name: el.name,
                 image: el.image,
-                //dishTypes: el.dishTypes,
                 diets: el.diets?.map(el=>el.name),
                 summary: el.summary,
                 score: el.score,
@@ -74,7 +66,7 @@ const getRecipesbyId= async(req,res,next)=>{
                 instructions: el.instructions
            }
             return res.json(obj)
-           }
+        }
         const resp= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
         const el= await resp.data
         const obj= {
@@ -89,7 +81,7 @@ const getRecipesbyId= async(req,res,next)=>{
                return element.step
              }).join()
         }
-        return res.send(obj)
+        return res.json(obj)
     } catch (error) {
          next(error)
         }

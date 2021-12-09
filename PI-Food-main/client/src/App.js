@@ -8,33 +8,36 @@ import { useEffect } from "react";
 import React from 'react';
 import {useDispatch} from 'react-redux';
 import {getDiets, getRecipes} from './actions/index';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
-  const dispatch= useDispatch();
+    const dispatch= useDispatch();
     useEffect(()=>{
         dispatch(getRecipes())
     },[dispatch])
 
     useEffect(()=>{
       dispatch(getDiets())
-  },[dispatch])
-
+  },[dispatch]) 
+ 
   return (
     <div className="App">
-      <Switch> 
-        <Route path='/' exact>
-          <Landing/>
-        </Route>
-        <Route path='/create' exact>
-          <RecipeCreate/>
-        </Route>
-        <Route path='/home' exact>
-          <Home/>
-        </Route>
-        <Route path='/details/:id' exact>
-          <Details/>
-        </Route>
-      </Switch>
+      <BrowserRouter>
+        <Switch> 
+          <Route path='/' exact>
+            <Landing/>
+          </Route>
+          <Route path='/create' exact>
+            <RecipeCreate/>
+          </Route>
+          <Route path='/home' exact>
+            <Home/>
+          </Route>
+          <Route path='/details/:id' exact>
+            <Details/>
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }

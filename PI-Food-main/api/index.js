@@ -19,11 +19,6 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn, Diet } = require('./src/db.js');
-const axios= require('axios')
-require('dotenv').config();
-const {
-    API_KEY
-}= process.env
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(async() => {

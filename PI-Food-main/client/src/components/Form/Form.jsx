@@ -113,11 +113,3 @@ export default function Form() {
         </div>
     )
 }
-
-/* 
-    function handleSubmit(e) {
-        e.preventDefault()
-        dispatch(postRecipe(recipe))
-        history.push(`/home`)
-    }
- */

@@ -29,7 +29,7 @@ describe('Diet model', () => {
   describe('Validators', () => {
     beforeEach(() => Recipe.sync({ force: true }));
     describe('name', () => {
-      xit('should work when its a valid name', () => {
+      it('should work when its a valid name', () => {
         Diet.create({ name: 'libre de gluten' });
       });
     });

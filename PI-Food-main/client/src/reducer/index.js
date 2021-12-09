@@ -1,6 +1,7 @@
 import { GET_RECIPES, GET_DIETS, GET_RECIPES_BY_NAME, SORT_NAME, FILTER_BY_DIETS, SORT_SCORE, LOADING } from '../actions/index';
 const initialState={
     recipes:[],
+    copy:[],
     diets:[],
     filteredRecipes:[],
     loading: false,
@@ -12,6 +13,7 @@ function rootReducer(state=initialState, action){
             return {
                 ...state,
                 recipes: action.payload,
+                copy: action.payload,
                 loading: false
             }
         case GET_DIETS:
@@ -66,17 +68,19 @@ function rootReducer(state=initialState, action){
                 }
             } 
         case FILTER_BY_DIETS:
-            const copyRecipes= [...state.recipes]
+            const copyRecipes= [...state.copy]
             const filter= copyRecipes.filter(recipe=>recipe.diets.find(el=>el===action.payload))
             if(action.payload==='all'){
                    return{
                        ...state,
+                       recipes: state.copy,
                        filteredRecipes:[]
                    }
             }else if(!filter.length){
-                alert('no matches found')
-                return{
-                   ...state,
+                return {
+                    ...state, 
+                    recipes:[],
+                    filteredRecipes:[],
                 }
             }else{
                 return{
